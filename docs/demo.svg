@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 460" font-family="ui-monospace, Menlo, Consolas, monospace">
+  <defs>
+    <linearGradient id="term" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1e293b"/>
+      <stop offset="100%" stop-color="#0f172a"/>
+    </linearGradient>
+  </defs>
+  <rect width="900" height="460" fill="#0f172a"/>
+
+  <!-- terminal window -->
+  <rect x="30" y="24" width="840" height="410" rx="10" fill="url(#term)" stroke="#334155"/>
+  <!-- traffic lights -->
+  <circle cx="52" cy="46" r="6" fill="#f87171"/>
+  <circle cx="72" cy="46" r="6" fill="#fbbf24"/>
+  <circle cx="92" cy="46" r="6" fill="#34d399"/>
+  <text x="450" y="50" font-size="12" text-anchor="middle" fill="#94a3b8">bash — mcp-rag-mini</text>
+
+  <!-- content -->
+  <g font-size="13">
+    <!-- upload -->
+    <text x="52" y="90" fill="#7ed3a3">$ <tspan fill="#e2e8f0">curl -sX POST http://localhost:8000/documents \</tspan></text>
+    <text x="80" y="110" fill="#e2e8f0">-H "Content-Type: application/json" \</text>
+    <text x="80" y="130" fill="#e2e8f0">-d '{"title":"Bitcoin whitepaper","text":"A purely peer-to-peer version..."}'</text>
+    <text x="52" y="152" fill="#a8bdd3">{"doc_id":"5b8f...","chunks":12}</text>
+
+    <!-- ask -->
+    <text x="52" y="188" fill="#7ed3a3">$ <tspan fill="#e2e8f0">curl -sX POST http://localhost:8000/ask \</tspan></text>
+    <text x="80" y="208" fill="#e2e8f0">-d '{"question":"What problem does Bitcoin solve?","top_k":3}'</text>
+
+    <text x="52" y="234" fill="#f0b862">{</text>
+    <text x="70" y="254" fill="#a8bdd3">"answer_context": [</text>
+    <text x="90" y="274" fill="#a8bdd3">{"doc_title":"Bitcoin whitepaper", "score":<tspan fill="#7ed3a3">0.81</tspan>,</text>
+    <text x="110" y="292" fill="#e2e8f0">"text":"solves double-spending without a central mint..."</text>
+    <text x="90" y="310" fill="#a8bdd3">},</text>
+    <text x="90" y="328" fill="#a8bdd3">{"doc_title":"Bitcoin whitepaper", "score":<tspan fill="#7ed3a3">0.74</tspan>, ...}</text>
+    <text x="70" y="348" fill="#a8bdd3">],</text>
+    <text x="70" y="368" fill="#a8bdd3">"suggested_prompt": "Answer the question using only the context..."</text>
+    <text x="52" y="388" fill="#f0b862">}</text>
+
+    <text x="52" y="416" fill="#7ed3a3">$ <tspan fill="#e2e8f0">_</tspan></text>
+  </g>
+</svg>

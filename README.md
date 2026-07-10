@@ -1,11 +1,38 @@
 # mcp-rag-mini
 
+![Python 3.12](https://img.shields.io/badge/python-3.12-3776AB?logo=python&logoColor=white)
+![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-FF6B35?logo=chromadb&logoColor=white)
+![MCP](https://img.shields.io/badge/MCP-SDK-412991)
+![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
+[![CI](https://github.com/Pinger1456/mcp-rag-mini/actions/workflows/ci.yml/badge.svg)](https://github.com/Pinger1456/mcp-rag-mini/actions/workflows/ci.yml)
+
 Minimal RAG service exposing the same vector index over **two interfaces**:
 
 - **REST** (`FastAPI`) — upload docs, query for top-k relevant chunks, get a suggested LLM prompt.
 - **MCP server** (`stdio`) — a `rag_search` tool that any MCP-compatible client (Claude Desktop, custom agents) can call directly.
 
 Both interfaces share one `DocStore` — ChromaDB for vectors, `fastembed` (ONNX) for embeddings, cosine similarity. No LLM inside; the service is a clean retrieval layer.
+
+## Architecture
+
+```mermaid
+flowchart LR
+    C1[HTTP client / dashboard] --> REST[FastAPI<br/>/documents /ask /health]
+    C2[Claude Desktop / MCP agent] --> MCP[MCP stdio server<br/>rag_search tool]
+    REST --> DS[DocStore singleton]
+    MCP --> DS
+    DS --> E[fastembed ONNX<br/>all-MiniLM-L6-v2]
+    DS --> CH[(ChromaDB<br/>persistent cosine)]
+    E --> CH
+```
+
+Same `DocStore` under both entry points — no drift between what "an LLM sees" and "a dashboard sees".
+
+## Demo
+
+![REST demo](./docs/demo.svg)
 
 ## Why this shape
 
