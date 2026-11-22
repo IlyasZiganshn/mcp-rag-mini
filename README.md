@@ -6,7 +6,7 @@
 ![MCP](https://img.shields.io/badge/MCP-SDK-412991)
 ![Docker](https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=white)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
-[![CI](https://github.com/Pinger1456/mcp-rag-mini/actions/workflows/ci.yml/badge.svg)](https://github.com/Pinger1456/mcp-rag-mini/actions/workflows/ci.yml)
+[![CI](https://github.com/IlyasZiganshn/mcp-rag-mini/actions/workflows/ci.yml/badge.svg)](https://github.com/IlyasZiganshn/mcp-rag-mini/actions/workflows/ci.yml)
 
 Minimal RAG service exposing the same vector index over **two interfaces**:
 
@@ -113,7 +113,3 @@ app/
 - No reranker — cosine top-k. Fine for demo; production needs cross-encoder rerank.
 - Fixed-window chunking with overlap. Semantic chunking is a follow-up.
 - No auth — mount behind a reverse proxy or add API key middleware.
-
-## Interview crib sheet
-
-See [`INTERVIEW_NOTES.md`](./INTERVIEW_NOTES.md) — the actual reasoning behind each architectural choice, plus expected questions.
