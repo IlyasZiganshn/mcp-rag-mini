@@ -1,21 +1,5 @@
 """Unit tests for chunking. Runs without ChromaDB / fastembed installed."""
-import sys
-import types
-
-# Stub external deps so importing app.store does not require them installed.
-sys.modules.setdefault("chromadb", types.SimpleNamespace(
-    PersistentClient=lambda **_: types.SimpleNamespace(
-        get_or_create_collection=lambda **__: None,
-    ),
-))
-sys.modules.setdefault("chromadb.config", types.SimpleNamespace(
-    Settings=lambda **_: None,
-))
-sys.modules.setdefault("fastembed", types.SimpleNamespace(
-    TextEmbedding=lambda **_: None,
-))
-
-from app.store import DocStore  # noqa: E402
+from app.store import DocStore
 
 
 def test_chunk_short_text_single_chunk():
